@@ -19,7 +19,7 @@ $(CODE).hex: $(CODE).elf
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm $(CODE) $(CODE).o $(CODE).elf $(CODE).hex
+	rm $(CODE).o $(CODE).elf $(CODE).hex
 
 flash: $(CODE).hex
 	avrdude -P $(PORT) -p $(AVRDUDE_SHORT_CODE) -c $(PROGRAMMER) -U flash:w:$(CODE).hex
