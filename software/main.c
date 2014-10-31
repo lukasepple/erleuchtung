@@ -19,7 +19,7 @@ void fade_to(uint8_t colors[]) {
 	differences[0] = current[0] - colors[0];
 	differences[1] = current[1] - colors[1];
 	differences[2] = current[2] - colors[2];
-	
+
 	while(1) {
 		int i;
 		for(i = 0; i < 3; i++) {
@@ -49,18 +49,14 @@ void fade_to(uint8_t colors[]) {
 int main( void ) {
 	DDRB |= (1 << PB3); // OC0
 	DDRD |= (1 << PD4) | (1 << PD5); // OC1B OC1A
-	
+
 	/* setup the timers in Fast PWM non-inverted mode */
 	TCCR0 |= (1 << WGM00) | (1 << WGM01) | (1 << COM01) | (1 << CS00);
 
 	TCCR1A |= (1 << WGM12) | (1 << WGM10) | (1 << COM1A1) | (1 << COM1B1) | (1 << CS00);
 	TCCR1B |= (1 << WGM12) | (1 << WGM10) | (1 << COM1A1) | (1 << COM1B1) | (1 << CS00);
 
-	uint8_t colors[] = { rand() % 0xFF, rand() % 0xFF, rand() % 0xFF };
-	OCR0 = colors[0];
-	OCR1A = colors[1];
-	OCR1B = colors[2];
-
+	uint8_t colors[3];
 	while(1) {
 		int i;
 		for(i = 0; i < 3; i++) {
